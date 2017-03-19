@@ -88,7 +88,7 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
 
     @Override
     public void onClick (View v) {
-        startActivity(HomeActivity.class);
+        startActivity(MainActivity.class);
         SPTools.setBoolean(TutorialActivity.this, IS_FIRST_IN, false);
     }
 

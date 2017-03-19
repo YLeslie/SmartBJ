@@ -29,7 +29,7 @@
         android:background="@drawable/button_red_normal"
         android:padding="10dp"
         android:text="立即体验"
-        android:textColor="@color/text_selector"
+        android:textColor="@color/guide_text_selector"
         android:textSize="20sp"
         android:visibility="gone"/>
 </RelativeLayout>

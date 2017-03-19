@@ -7,10 +7,10 @@ import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.smartbj.R;
 import com.example.smartbj.utils.SPTools;
+import com.example.smartbj.utils.ToastUtils;
 
 import butterknife.BindView;
 
@@ -58,10 +58,10 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
     public void onAnimationEnd (Animation animation) {
         boolean isFirstIn = SPTools.getBoolean(mContext, IS_FIRST_IN);
         if (isFirstIn) {
-            startActivity(TutorialActivity.class);
-            Toast.makeText(mContext, "第一次进入", Toast.LENGTH_SHORT).show();
+
+            ToastUtils.make(mContext,"第一次开启");
         } else {
-            startActivity(HomeActivity.class);
+            startActivity(MainActivity.class);
         }
     }
 
