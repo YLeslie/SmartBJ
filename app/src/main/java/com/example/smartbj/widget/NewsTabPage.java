@@ -2,6 +2,7 @@ package com.example.smartbj.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -19,23 +20,30 @@ public class NewsTabPage extends TabPage {
 
     @Override
     public void switchTabPage (int postion) {
-        TextView textView = new TextView(getContext());
+        View view = null;
         switch (postion) {
             case 0:
-                textView.setText("新闻");
+                view = new NewsPage(getContext());
+//                NewsPage newsPage = (NewsPage) view;
                 break;
             case 1:
-                textView.setText("专题");
+                view = new TextView(getContext());
+                TextView zhuanti = (TextView) view;
+                zhuanti.setText("专题");
                 break;
             case 2:
-                textView.setText("组图");
+                view = new TextView(getContext());
+                TextView zutu = (TextView) view;
+                zutu.setText("组图");
                 break;
             case 3:
-                textView.setText("互动");
+                view = new TextView(getContext());
+                TextView hudong = (TextView) view;
+                hudong.setText("互动");
                 break;
         }
         mTapPageContent.removeAllViews();
-        mTapPageContent.addView(textView);
+        mTapPageContent.addView(view);
     }
 }
 

@@ -30,4 +30,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.github.uncleleonfan:ViewPagerIndicator:1.0.0'
     compile 'com.github.uncleleonfan:SlidingMenu:1.0.0'
+    compile 'com.github.open-android:PullToRefresh:v1.0'
+    compile 'com.github.uncleleonfan:FunBanner:1.1.5'
+    compile 'com.android.volley:volley:1.0.0'
 }
