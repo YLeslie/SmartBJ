@@ -188,14 +188,19 @@ public class NewsPullToFreshListView extends PullToRefreshListView {
         public void onResponse (NewsListBean response) {
             LoggerUtils.d(TAG, response.toString());
             mNewsListBean = response;
-            List<String> topImageList = new ArrayList<>();
-            List<String> titleList = new ArrayList<>();
+            final List<String> topImageList = new ArrayList<>();
+            final List<String> titleList = new ArrayList<>();
             List<NewsListBean.DataBean.TopnewsBean> topnewsBeanList = mNewsListBean.getData().getTopnews();
             for (int i = 0; i < topnewsBeanList.size(); i++) {
                 topImageList.add(topnewsBeanList.get(i).getTopimage());
                 titleList.add(topnewsBeanList.get(i).getTitle());
             }
-            mFunBanner.setImageUrlsAndTitles(topImageList, titleList);
+            post(new Runnable() {
+                @Override
+                public void run () {
+                    mFunBanner.setImageUrlsAndTitles(topImageList, titleList);
+                }
+            });
             LoggerUtils.d(TAG, "onResponse: 下拉刷新完成");
             mAdapter.notifyDataSetChanged();
             onRefreshComplete();

@@ -84,5 +84,4 @@ public class MenuFragment extends BaseFragment implements AdapterView.OnItemClic
     public void setOnMenuClickListener (OnMenuClickListener listener) {
         mListener = listener;
     }
-
 }

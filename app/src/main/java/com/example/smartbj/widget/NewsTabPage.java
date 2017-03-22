@@ -3,12 +3,14 @@ package com.example.smartbj.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.example.smartbj.R;
 import com.example.smartbj.bean.CategoriesBean;
-import com.example.smartbj.network.NetWorkManager;
 import com.example.smartbj.network.NetWorkListener;
+import com.example.smartbj.network.NetWorkManager;
 import com.example.smartbj.network.SmartBJRequest;
 import com.example.smartbj.utils.LoggerUtils;
 import com.example.smartbj.utils.ToastUtils;
@@ -20,18 +22,41 @@ import com.example.smartbj.utils.ToastUtils;
 public class NewsTabPage extends TabPage {
     private static final String TAG = "NewsTabPage";
     private CategoriesBean mCategoriesBean;
+    private ImageView mImageView;
+    private boolean isList = true;
+    private PhotoPage mPhotoPage;
 
     public NewsTabPage (Context context) {
-        super(context);
+        this(context, null);
     }
 
     public NewsTabPage (Context context, AttributeSet attrs) {
         super(context, attrs);
+        mImageView = (ImageView) findViewById(R.id.iv_change);
+        mImageView.setOnClickListener(mOnClickListener);
     }
+
+    private OnClickListener mOnClickListener = new OnClickListener() {
+        @Override
+        public void onClick (View v) {
+            isList = !isList;
+            if (isList) {
+                mImageView.setImageResource(R.mipmap.icon_pic_grid_type);
+            } else {
+                mImageView.setImageResource(R.mipmap.icon_pic_list_type);
+            }
+            mPhotoPage.changeStyle(isList);
+        }
+    };
 
     @Override
     public void switchTabPage (int postion) {
         View view = null;
+        if (postion == 2) {
+            mImageView.setVisibility(VISIBLE);
+        } else {
+            mImageView.setVisibility(View.GONE);
+        } 
         switch (postion) {
             case 0:
                 NewsPage newsPage = new NewsPage(getContext());
@@ -44,9 +69,12 @@ public class NewsTabPage extends TabPage {
                 zhuanti.setText("专题");
                 break;
             case 2:
-                view = new TextView(getContext());
+                /*view = new TextView(getContext());
                 TextView zutu = (TextView) view;
-                zutu.setText("组图");
+                zutu.setText("组图");*/
+                mPhotoPage = new PhotoPage(getContext());
+                mPhotoPage.setData(mCategoriesBean.getData().get(2).getUrl());
+                view = mPhotoPage;
                 break;
             case 3:
                 view = new TextView(getContext());
@@ -65,7 +93,7 @@ public class NewsTabPage extends TabPage {
         NetWorkManager.sendRequest(smartBJRequest);
     }
 
-    private NetWorkListener<CategoriesBean> mListener = new NetWorkListener<CategoriesBean>(){
+    private NetWorkListener<CategoriesBean> mListener = new NetWorkListener<CategoriesBean>() {
         @Override
         public void onResponse (CategoriesBean response) {
             LoggerUtils.d(TAG, "解析成功");
@@ -77,7 +105,7 @@ public class NewsTabPage extends TabPage {
         public void onErrorResponse (VolleyError error) {
             super.onErrorResponse(error);
             LoggerUtils.d(TAG, "解析失败");
-            ToastUtils.make(getContext(),"请求失败");
+            ToastUtils.make(getContext(), "请求失败");
         }
     };
     /*private Response.Listener<CategoriesBean> mListener =  new Response.Listener<CategoriesBean>() {
