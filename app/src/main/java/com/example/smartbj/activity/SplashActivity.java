@@ -56,10 +56,10 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
 
     @Override
     public void onAnimationEnd (Animation animation) {
-        boolean isFirstIn = SPTools.getBoolean(mContext, IS_FIRST_IN);
-        if (isFirstIn) {
-
-            ToastUtils.make(mContext,"第一次开启");
+       // boolean isFirstIn = SPTools.getBoolean(mContext, IS_FIRST_IN, true);
+        if (SPTools.getBoolean(mContext, IS_FIRST_IN, true)) {
+            startActivity(TutorialActivity.class);
+            ToastUtils.make(mContext, "第一次开启");
         } else {
             startActivity(MainActivity.class);
         }

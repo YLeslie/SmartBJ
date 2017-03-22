@@ -90,6 +90,9 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
                 mListener.onMenuStatusChange();
             }
         });
+
+        //发送网络请求
+        tabPage.loadDataFromService();
         return tabPage;
     }
 

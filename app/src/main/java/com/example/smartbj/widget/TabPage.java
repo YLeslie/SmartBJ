@@ -57,6 +57,10 @@ public class TabPage extends RelativeLayout implements View.OnClickListener {
         }
     }
 
+    public void loadDataFromService () {
+
+    }
+
     public interface OnMenuStatusListener {
         void onMenuStatus ();
     }

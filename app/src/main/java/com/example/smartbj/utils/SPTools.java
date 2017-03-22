@@ -17,8 +17,8 @@ public class SPTools {
         edit.commit();
     }
 
-    public static boolean getBoolean (Context context, String key) {
+    public static boolean getBoolean (Context context, String key, boolean defult) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(key, true);
+        return sharedPreferences.getBoolean(key, defult);
     }
 }
