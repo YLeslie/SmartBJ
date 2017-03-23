@@ -7,7 +7,7 @@ import android.util.Log;
  */
 
 public class LoggerUtils {
-    private static Boolean b = true;
+    private static Boolean b = false;
 
     public static void d (String TAG, String content) {
         if (!b) {

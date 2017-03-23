@@ -98,7 +98,9 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
 
     public void switchTo (int postion) {
         ToastUtils.make(getContext(), "跳转到了item" + postion);
-        mCurrentTabPage.switchTabPage(postion);
+        if (mCurrentTabPage != null) {
+            mCurrentTabPage.switchTabPage(postion);
+        }
     }
 
     public interface OnRadioCHeckedListener {

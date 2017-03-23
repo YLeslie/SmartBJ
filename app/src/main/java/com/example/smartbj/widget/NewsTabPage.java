@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.example.smartbj.R;
@@ -51,12 +52,16 @@ public class NewsTabPage extends TabPage {
 
     @Override
     public void switchTabPage (int postion) {
+        if (mCategoriesBean == null) {
+            Toast.makeText(getContext(), "网络异常", Toast.LENGTH_SHORT).show();
+            return;
+        }
         View view = null;
         if (postion == 2) {
             mImageView.setVisibility(VISIBLE);
         } else {
             mImageView.setVisibility(View.GONE);
-        } 
+        }
         switch (postion) {
             case 0:
                 NewsPage newsPage = new NewsPage(getContext());
@@ -106,6 +111,7 @@ public class NewsTabPage extends TabPage {
             super.onErrorResponse(error);
             LoggerUtils.d(TAG, "解析失败");
             ToastUtils.make(getContext(), "请求失败");
+            Toast.makeText(getContext(), "网络异常", Toast.LENGTH_SHORT).show();
         }
     };
     /*private Response.Listener<CategoriesBean> mListener =  new Response.Listener<CategoriesBean>() {

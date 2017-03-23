@@ -8,7 +8,7 @@ import android.widget.Toast;
  */
 
 public class ToastUtils {
-    private static boolean b = true;
+    private static boolean b = false;
 
     public static void make (Context context, String str) {
         if (!b) {

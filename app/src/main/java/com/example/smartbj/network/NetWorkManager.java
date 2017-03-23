@@ -12,8 +12,6 @@ import com.android.volley.toolbox.Volley;
  */
 
 public class NetWorkManager {
-
-
     private static final int MAX_CACHE_SIZE = 5 * 1024 * 1024;
     private static RequestQueue sRequestQueue;
     private static ImageLoader sImageLoader;

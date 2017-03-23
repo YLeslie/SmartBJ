@@ -45,6 +45,7 @@ public class MainActivity extends SlidingFragmentActivity {
                     sm.setTouchModeAbove(SlidingMenu.LEFT);
                 }
             }
+
             //点击侧滑开关切换侧滑菜单的状态
             @Override
             public void onMenuStatusChange () {
@@ -56,7 +57,7 @@ public class MainActivity extends SlidingFragmentActivity {
             @Override
             public void onMenuClick (int postion, int lastPostion) {
                 sm.toggle();
-                if (postion != lastPostion) {
+                if (postion != lastPostion & mHomeFragment != null) {
                     mHomeFragment.switchTo(postion);
                 }
             }
